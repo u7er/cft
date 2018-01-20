@@ -6,6 +6,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
+#include <errno.h>
 
 using namespace std;
 
@@ -79,12 +80,19 @@ int CftTest::checkData(const string &file_name) {
     while (!input.eof()) {
         string temp_string;
         getline(input, temp_string);
-        for (char i : temp_string)
-            if ((i < '0' || i > '9')) {
-                if(i == '-') continue;
-                input.close();
-                return 2;
-            }
+        char *nptr;
+        errno = 0;
+        strtol(temp_string.c_str(), &nptr, 10);
+        if(errno == ERANGE){
+            cout << "Number " << temp_string << " is big" << endl;
+            exit(0);
+        }
+        if(errno == EINVAL){
+            cout << "Incorrect number " << temp_string << endl;
+            exit(0);
+        }
+
+        if(*nptr != '\0' || nptr == temp_string.c_str()) return 2;
     }
 
     input.close();
@@ -152,6 +160,7 @@ void CftTest::dataRead(){
     while (!input_data.eof()) {
         string s;
         getline(input_data, s);
+        if(s.empty()) continue;
         str_array.push_back(s);
     }
     input_data.close();
