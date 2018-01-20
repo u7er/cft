@@ -80,11 +80,11 @@ int CftTest::checkData(const string &file_name) {
         string temp_string;
         getline(input, temp_string);
         for (char i : temp_string)
-                if ((i < '0' || i > '9')) {
-                    if(i == '-') continue;
-                    input.close();
-                    return 2;
-                }
+            if ((i < '0' || i > '9')) {
+                if(i == '-') continue;
+                input.close();
+                return 2;
+            }
     }
 
     input.close();
@@ -99,14 +99,14 @@ void CftTest::checkDataKey(const int type_data_file, const char *key_data_type) 
                 exit(0);
             }
             break;
-        }/*
+        }
         case 2: {
             if (key_data_type[1] == 'i') {
                 cout << "File data does not match the type of the key." << endl;
                 exit(0);
             }
             break;
-        }*/
+        }
         default:
             break;
     }
