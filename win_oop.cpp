@@ -63,7 +63,7 @@ void printArray(vector<Type> array, const string &file_out) {
     ofstream output_data(file_out);
     for (auto &it: array){
         output_data << it << '\n';
-        cout << it << '\n';
+        //cout << it << '\n';
     }
     output_data.close();
 }
