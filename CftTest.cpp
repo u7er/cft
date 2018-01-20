@@ -79,10 +79,11 @@ int CftTest::checkData(const string &file_name) {
         string temp_string;
         getline(input, temp_string);
         for (char i : temp_string)
-            if (i < '0' || i > '9') {
-                input.close();
-                return 2;
-            }
+                if ((i < '0' || i > '9')) {
+                    if(i == '-') continue;
+                    input.close();
+                    return 2;
+                }
     }
 
     input.close();
