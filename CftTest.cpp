@@ -68,6 +68,7 @@ void printArray(vector<Type> array, const string &file_out) {
 }
 
 int CftTest::checkData(const string &file_name) {
+    if(agrv[3][1] == 's') return 2;
     ifstream input(file_name);
 
     if (!input.is_open()) {
@@ -98,14 +99,14 @@ void CftTest::checkDataKey(const int type_data_file, const char *key_data_type) 
                 exit(0);
             }
             break;
-        }
+        }/*
         case 2: {
             if (key_data_type[1] == 'i') {
                 cout << "File data does not match the type of the key." << endl;
                 exit(0);
             }
             break;
-        }
+        }*/
         default:
             break;
     }
